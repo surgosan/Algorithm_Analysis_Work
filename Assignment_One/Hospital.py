@@ -17,7 +17,7 @@ class Hospital:
     def check_match(self, resident):
         if len(self.currently_matched) >= self.slots:
             for match in self.currently_matched:
-                if self.preferences.index(self.currently_matched[match]) < self.preferences.index(resident):
+                if self.preferences.index(self.currently_matched[match.get_name()]) < self.preferences.index(resident):
                     return
                 else:
                     self.currently_matched[match] = resident
@@ -36,5 +36,14 @@ class Hospital:
     def get_currently_matched(self):
         return self.currently_matched
 
+    def print_name(self):
+        print(self.name)
+
     def print_slots(self):
         print(self.slots)
+
+    def print_preferences(self):
+        print(self.preferences)
+
+    def print_currently_matched(self):
+        print(self.currently_matched)
