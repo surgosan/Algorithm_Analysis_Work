@@ -1,23 +1,22 @@
 Hospitals
     fields
-        name
-        slots
-        preference list
-        currently_matched <-- list
+        name`
+        slots`
+        preference list`
+        currently_matched <-- list`
     functions
-        initialize
-        set_name
-        set_slots
-        add_preference
-        add_match
-        update_match
+        initialize``
+        set_name``
+        set_slots``
+        add_preference``
+        check_match
             Check if possible candidate is better choice
                 If better, remove old match and replace
                 else do nothing
-        get_name
-        get_slots
-        get_preferences
-        get_matches
+        get_name``
+        get_slots``
+        get_preferences``
+        get_matches``
 
 Residents
     fields
