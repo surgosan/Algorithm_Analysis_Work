@@ -31,7 +31,13 @@ class Hospital:
         return self.slots
 
     def get_preferences(self):
-        return self.preferences
+        name_list = ''
+        for preference in self.preferences:
+            if not name_list:
+                name_list = preference.get_name()
+            else:
+                name_list += ', ' + preference.get_name()
+        return name_list
 
     def get_currently_matched(self):
         return self.currently_matched
@@ -43,7 +49,7 @@ class Hospital:
         print(self.slots)
 
     def print_preferences(self):
-        print(self.preferences)
+        print(self.preferences[0].get_name())
 
     def print_currently_matched(self):
         print(self.currently_matched)
