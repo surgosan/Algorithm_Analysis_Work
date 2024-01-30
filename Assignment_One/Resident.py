@@ -1,4 +1,4 @@
-class Residents:
+class Resident:
     name = ""
     preferences = []
 
