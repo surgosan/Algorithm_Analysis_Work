@@ -30,4 +30,5 @@ Residents
         get_preferences
 
 Algorithm
-
+    list of hospitals and residents
+    if a student is matched, remove the student from the list
