@@ -32,3 +32,14 @@ Residents
 Algorithm
     list of hospitals and residents
     if a student is matched, remove the student from the list
+
+    Initialize M to empty matching
+    while(some hospital h is unmatched)
+        s <-- next in line student on h's preference list to whom h has not yet proposed to
+        if(s is unmatched)
+            add h-s to matching M
+        else if(s prefers h to current matching)
+            replace h'-s with h-s in M
+        else(s rejects h)
+
+    return M

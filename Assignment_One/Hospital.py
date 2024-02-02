@@ -4,6 +4,12 @@ class Hospital:
     preferences = []
     currently_matched = []
 
+    def __init__(self):
+        self.name = ''
+        self.slots = ''
+        self.preferences = []
+        self.currently_matched = []
+
     def set_name(self, name):
         self.name = name
 
