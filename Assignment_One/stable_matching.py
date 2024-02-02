@@ -15,7 +15,14 @@ with open(csv_file, 'r') as file:
             onResidents = True
             continue
 
-        if not onResidents:
+        if onResidents:
+            resident = Resident.Resident()
+            resident.set_name(row[0])
+            resident_preferences = row[1:]
+            for preference in resident_preferences:
+                resident.add_preference(preference)
+            residents.append(resident)
+        else:
             hospital = Hospital.Hospital()
             hospital.set_name(row[0])
             hospital.set_slots(row[1])
@@ -23,21 +30,18 @@ with open(csv_file, 'r') as file:
             for preference in hospital_preferences:
                 hospital.add_preference(preference)
             hospitals.append(hospital)
-        else:
-            resident = Resident.Resident()
-            resident.set_name(row[0])
-            resident_preferences = row[1:]
-            for preference in resident_preferences:
-                resident.add_preference(preference)
-            residents.append(resident)
+
 
 for hospital in hospitals:
     output_string = 'Hospital: {}, Slots: {}, Preferences: {}'.format(hospital.name,
                                                                       hospital.slots, hospital.preferences)
     print(output_string)
 
+print('')
+
 for resident in residents:
     output_string = 'Resident: {}, Preferences: {}'.format(resident.name, resident.preferences)
+    print(output_string)
 
 h1 = Hospital.Hospital()
 r1 = Resident.Resident()

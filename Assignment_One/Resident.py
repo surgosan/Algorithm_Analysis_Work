@@ -3,6 +3,10 @@ class Resident:
     name = ""
     preferences = []
 
+    def __init__(self):
+        self.name = ''
+        self.preferences = []
+
     def set_name(self, name):
         self.name = name
 
