@@ -6,6 +6,7 @@ hospitals = []
 residents = []
 matches = []
 
+# Read CSV and input info into hospitals and residents
 csv_file = './input.csv'
 with open(csv_file, 'r') as file:
     csv_reader = csv.reader(file)
@@ -43,22 +44,8 @@ for resident in residents:
     output_string = 'Resident: {}, Preferences: {}'.format(resident.name, resident.preferences)
     print(output_string)
 
-h1 = Hospital.Hospital()
-r1 = Resident.Resident()
-r1.set_name('guy')
 
-r2 = Resident.Resident()
-r2.set_name('guy2')
+# Gale Shapley Algorithm
 
-r3 = Resident.Resident()
-r3.set_name('guy3')
+# while len(residents) > 0:
 
-h1.set_name("Atlanta")
-h1.set_slots(2)
-hospital_preference_list = [r1, r2, r3]
-for name in hospital_preference_list:
-    h1.add_preference(name)
-
-# h1.print_preferences()
-# h1.print_slots()
-# print(h1.get_preferences())

@@ -2,10 +2,12 @@
 class Resident:
     name = ""
     preferences = []
+    current_match = None
 
     def __init__(self):
         self.name = ''
         self.preferences = []
+        self.current_match = None
 
     def set_name(self, name):
         self.name = name
