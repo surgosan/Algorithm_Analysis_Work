@@ -41,37 +41,47 @@ print('')
 for resident in residents:
     output_string = 'Resident: {}, Preferences: {}'.format(resident.name, resident.preferences)
     print(output_string)
-    print("")
+
 
 # Gale Shapley Algorithm
-
+print("")
 matching = []
 res_num = 0
 hos_num = 0
 while res_num < len(residents):
-    cur_resident = residents[res_num]
+    cur_resident = hospitals[hos_num].get_preferences()[res_num]
 
-    print("{}, resNum: {}".format(cur_resident.name, res_num))
+    print("{}, resNum: {}".format(cur_resident, res_num))
     if cur_resident.current_match is None and cur_resident in hospitals[hos_num].preferences:
         cur_hospital = hospitals[hos_num]
         matching.append((cur_hospital, cur_resident))
         cur_hospital.set_match(cur_resident)
         cur_resident.set_match(cur_hospital)
         res_num += 1
-    elif  cur_resident.current_match is not None and cur_resident.get_preferences().index(cur_resident.get_current_match().name) \
-            < cur_resident.get_preferences().index(cur_hospital):
+
+        for (hospital, resident) in matching:
+            print("Match Found")
+            print(hospital.name, resident.name)
+    elif cur_resident.current_match is not None and cur_resident.get_preferences().index(
+            cur_resident.get_current_match().name) \
+            < cur_resident.get_preferences().index(hospitals[hos_num]):
         cur_hospital = hospitals[hos_num]
         matching.remove((cur_resident.get_current_match(), cur_resident))
         matching.append((cur_hospital, cur_resident))
         cur_hospital.set_match(cur_resident)
         cur_resident.set_match(cur_hospital)
         res_num += 1
+
+        for (hospital, resident) in matching:
+            print("Match Replaced")
+            print(hospital.name, resident.name)
     else:
         res_num += 1
         hos_num += 1
 
     if hos_num == len(hospitals):
         hos_num = 0
+
 print("")
 for (hospital, resident) in matching:
     print(hospital.name, resident.name)
