@@ -42,7 +42,6 @@ for resident in residents:
     output_string = 'Resident: {}, Preferences: {}'.format(resident.name, resident.preferences)
     print(output_string)
 
-
 # Gale Shapley Algorithm
 print("")
 matching = []
@@ -57,9 +56,15 @@ while res_num < len(residents):
         print("Match Found")
         print(cur_hospital.get_name(), cur_resident)
 
-        matching.append((cur_hospital, cur_resident))
-        #getting an error from this. getting boned rn frfr
-        residents.remove(cur_resident)
+        # getting an error from this. getting boned rn frfr
+        # Remember that cur_resident is a string. Search residents with get_name to find a match
+        for resident in residents:
+            if resident.get_name() == cur_resident:
+                residents.remove(resident)
+                break
+        # The code now works past this until Chicago tries to take Xavier, but he is already taken
+        matching.append((cur_hospital, cur_resident))  # Append after the resident is removed incase it breaks
+        # Also feel free to open an issue if something happens again
         hos_num += 1
         res_num = 0
     elif (residents[residents.index(cur_resident)].preferences.index(matching[0][0].get_name())
