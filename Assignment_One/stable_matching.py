@@ -72,7 +72,6 @@ while res_num < len(residents):
 
     if hos_num == len(hospitals):
         hos_num = 0
-
 print("")
 for (hospital, resident) in matching:
     print(hospital.name, resident.name)
