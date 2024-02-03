@@ -38,7 +38,7 @@ Algorithm
         s <-- next in line student on h's preference list to whom h has not yet proposed to
         if(s is unmatched)
             add h-s to matching M
-        else if(s prefers h to current matching)
+        else if(s prefers h' to current matching)
             replace h-s with h'-s in M
         else(s rejects h)
 

@@ -1,7 +1,7 @@
-Atlanta, 1, Xavier, Yolanda, Zeus
-Boston, 1, Yolanda, Xavier, Zeus
-Chicago, 1, Xavier, Yolanda, Zeus
+Atlanta,1,Xavier,Yolanda,Zeus
+Boston,1,Yolanda,Xavier,Zeus
+Chicago,1,Xavier,Yolanda,Zeus
 
-Xavier, Boston, Atlanta, Chicago
-Yolanda, Atlanta, Boston, Chicago
-Zeus, Atlanta, Boston, Chicago
+Xavier,Boston,Atlanta,Chicago
+Yolanda,Atlanta,Boston,Chicago
+Zeus,Atlanta,Boston,Chicago

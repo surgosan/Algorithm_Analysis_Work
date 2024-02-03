@@ -49,28 +49,25 @@ matching = []
 res_num = 0
 hos_num = 0
 while res_num < len(residents):
-    cur_resident = hospitals[hos_num].get_preferences()[res_num]
+    cur_resident = hospitals[hos_num].preferences[res_num]
 
-    print("{}, resNum: {}".format(cur_resident, res_num))
-    if cur_resident.current_match is None and cur_resident in hospitals[hos_num].preferences:
+    if any(x for x in residents if x.name == cur_resident):
+        cur_hospital = hospitals[hos_num]
+
+        print("Match Found")
+        print(cur_hospital.get_name(), cur_resident)
+
+        matching.append((cur_hospital, cur_resident))
+        residents.remove(cur_resident)
+        hos_num += 1
+        res_num = 0
+    elif (residents[residents.index(cur_resident)].preferences.index(matching[0][0].get_name())
+          < residents[residents.index(cur_resident)].preferences.index(hospitals[hos_num])):
         cur_hospital = hospitals[hos_num]
         matching.append((cur_hospital, cur_resident))
-        cur_hospital.set_match(cur_resident)
-        cur_resident.set_match(cur_hospital)
-        res_num += 1
-
-        for (hospital, resident) in matching:
-            print("Match Found")
-            print(hospital.name, resident.name)
-    elif cur_resident.current_match is not None and cur_resident.get_preferences().index(
-            cur_resident.get_current_match().name) \
-            < cur_resident.get_preferences().index(hospitals[hos_num]):
-        cur_hospital = hospitals[hos_num]
-        matching.remove((cur_resident.get_current_match(), cur_resident))
-        matching.append((cur_hospital, cur_resident))
-        cur_hospital.set_match(cur_resident)
-        cur_resident.set_match(cur_hospital)
-        res_num += 1
+        residents.remove(cur_resident)
+        hos_num += 1
+        res_num = 0
 
         for (hospital, resident) in matching:
             print("Match Replaced")
