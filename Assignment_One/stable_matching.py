@@ -46,25 +46,32 @@ for resident in residents:
 # Gale Shapley Algorithm
 
 matching = []
-while len(residents) > 0:
-    res_num = 0
-    hos_num = 0
+res_num = 0
+hos_num = 0
+while len(residents) > 0 and res_num < len(residents):
     cur_resident = residents[res_num]
-    cur_hospital = hospitals[hos_num]
+
     print("{}, resNum: {}".format(cur_resident.name, res_num))
     if cur_resident.current_match is None:
+        cur_hospital = hospitals[hos_num]
         matching.append((cur_hospital, cur_resident))
         cur_hospital.set_match(cur_resident)
         cur_resident.set_match(cur_hospital)
+        res_num += 1
     elif cur_resident.get_preferences().index(cur_resident.get_current_match().name) \
             < cur_resident.get_preferences().index(cur_hospital):
+        cur_hospital = hospitals[hos_num]
         matching.remove((cur_resident.get_current_match(), cur_resident))
         matching.append((cur_hospital, cur_resident))
         cur_hospital.set_match(cur_resident)
         cur_resident.set_match(cur_hospital)
+        res_num += 1
     else:
-        continue
-    res_num += 1
-    hos_num += 1
+        hos_num += 1
+
+    if hos_num == len(hospitals):
+        hos_num = 0
+
+
 
 # while len(residents) > 0:
