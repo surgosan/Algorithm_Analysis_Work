@@ -15,11 +15,17 @@ class Resident:
     def add_preference(self, preference):
         self.preferences.append(preference)
 
+    def set_match(self, hospital):
+        self.current_match = hospital
+
     def get_name(self):
         return self.name
 
     def get_preferences(self):
         return self.preferences
+
+    def get_current_match(self):
+        return self.current_match
 
     def print_name(self):
         print(self.name)

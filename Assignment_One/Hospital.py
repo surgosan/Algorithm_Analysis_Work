@@ -16,6 +16,9 @@ class Hospital:
     def set_slots(self, number_of_slots):
         self.slots = number_of_slots
 
+    def set_match(self, resident):
+        self.currently_matched.append(resident)
+
     def add_preference(self, resident):
         # Make sure to add the name using getName() instead of the object
         self.preferences.append(resident)
@@ -23,7 +26,8 @@ class Hospital:
     def check_match(self, resident):
         if len(self.currently_matched) >= self.slots:
             for match in self.currently_matched:
-                if self.preferences.index(self.currently_matched[match.get_name()]) < self.preferences.index(resident):
+                if self.preferences.index(self.currently_matched[match.get_name()]) < self.preferences.index(resident)\
+                        and resident.preferences.index(resident.current_match) < resident.preferences.index(self):
                     return
                 else:
                     self.currently_matched[match] = resident

@@ -39,7 +39,7 @@ Algorithm
         if(s is unmatched)
             add h-s to matching M
         else if(s prefers h to current matching)
-            replace h'-s with h-s in M
+            replace h-s with h'-s in M
         else(s rejects h)
 
     return M
