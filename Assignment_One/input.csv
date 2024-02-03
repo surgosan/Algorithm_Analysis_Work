@@ -1,5 +1,7 @@
-MERCY, 2, DARRIUS, JOSEPH
-CITY, 2, DARRIUS, ARTHUR, SUNNY, LATHA, JOSEPH
+Atlanta, 1, Xavier, Yolanda, Zeus
+Boston, 1, Yolanda, Xavier, Zeus
+Chicago, 1, Xavier, Yolanda, Zeus
 
-ARTHUR, CITY
-SUNNY, CITY, MERCY
+Xavier, Boston, Atlanta, Chicago
+Yolanda, Atlanta, Boston, chicago
+Zeus, Atlanta, Boston, Chicago
