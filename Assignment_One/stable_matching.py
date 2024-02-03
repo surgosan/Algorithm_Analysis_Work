@@ -48,17 +48,17 @@ for resident in residents:
 matching = []
 res_num = 0
 hos_num = 0
-while len(residents) > 0 and res_num < len(residents):
+while res_num < len(residents):
     cur_resident = residents[res_num]
 
     print("{}, resNum: {}".format(cur_resident.name, res_num))
-    if cur_resident.current_match is None:
+    if cur_resident.current_match is None and cur_resident in hospitals[hos_num].preferences:
         cur_hospital = hospitals[hos_num]
         matching.append((cur_hospital, cur_resident))
         cur_hospital.set_match(cur_resident)
         cur_resident.set_match(cur_hospital)
         res_num += 1
-    elif cur_resident.get_preferences().index(cur_resident.get_current_match().name) \
+    elif  cur_resident.current_match is not None and cur_resident.get_preferences().index(cur_resident.get_current_match().name) \
             < cur_resident.get_preferences().index(cur_hospital):
         cur_hospital = hospitals[hos_num]
         matching.remove((cur_resident.get_current_match(), cur_resident))
@@ -67,11 +67,12 @@ while len(residents) > 0 and res_num < len(residents):
         cur_resident.set_match(cur_hospital)
         res_num += 1
     else:
+        res_num += 1
         hos_num += 1
 
     if hos_num == len(hospitals):
         hos_num = 0
-
-
-
+print("")
+for (hospital, resident) in matching:
+    print(hospital.name, resident.name)
 # while len(residents) > 0:
