@@ -58,6 +58,7 @@ while res_num < len(residents):
         print(cur_hospital.get_name(), cur_resident)
 
         matching.append((cur_hospital, cur_resident))
+        #getting an error from this. getting boned rn frfr
         residents.remove(cur_resident)
         hos_num += 1
         res_num = 0
