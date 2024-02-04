@@ -6,7 +6,7 @@ class Hospital:
 
     def __init__(self):
         self.name = ''
-        self.slots = ''
+        self.slots = 0
         self.preferences = []
         self.currently_matched = []
 

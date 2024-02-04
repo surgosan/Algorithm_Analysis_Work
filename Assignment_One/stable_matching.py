@@ -47,14 +47,17 @@ print("")
 matching = []
 res_num = 0
 hos_num = 0
-while res_num < len(residents):
+while hos_num < len(hospitals) and len(hospitals[hos_num].preferences) > int(hospitals[hos_num].get_slots()):
     cur_resident = hospitals[hos_num].preferences[res_num]
+
+    print("Checking if {} {} and {} {} match".format(hospitals[hos_num].name, hos_num, cur_resident, res_num))
 
     if any(x for x in residents if x.name == cur_resident):
         cur_hospital = hospitals[hos_num]
 
         print("Match Found")
         print(cur_hospital.get_name(), cur_resident)
+        print("")
 
         # getting an error from this. getting boned rn frfr
         # Remember that cur_resident is a string. Search residents with get_name to find a match
@@ -67,7 +70,7 @@ while res_num < len(residents):
         # Also feel free to open an issue if something happens again
         hos_num += 1
         res_num = 0
-    elif (residents[residents.index(cur_resident)].preferences.index(matching[0][0].get_name())
+    elif (any(x for x in residents if x.name == cur_resident) and residents[residents.index(cur_resident)].preferences.index(matching[0][0].get_name())
           < residents[residents.index(cur_resident)].preferences.index(hospitals[hos_num])):
         cur_hospital = hospitals[hos_num]
         matching.append((cur_hospital, cur_resident))
@@ -80,12 +83,9 @@ while res_num < len(residents):
             print(hospital.name, resident.name)
     else:
         res_num += 1
-        hos_num += 1
 
-    if hos_num == len(hospitals):
-        hos_num = 0
 
 print("")
 for (hospital, resident) in matching:
-    print(hospital.name, resident.name)
+    print(hospital.name, resident)
 # while len(residents) > 0:
