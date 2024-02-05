@@ -30,14 +30,14 @@ with open(csv_file, 'r') as file:
             for preference in hospital_preferences:
                 hospital.add_preference(preference.replace(" ", "").lower())
             hospitals.append(hospital)
-
+# Print out hospital's name, slot amount, and preferences from greatest to least
 for hospital in hospitals:
     output_string = 'Hospital: {}, Slots: {}, Preferences: {}'.format(hospital.name,
                                                                       hospital.slots, hospital.preferences)
     print(output_string)
 
 print('')
-
+# Print out resident's name and preferences from greatest to least
 for resident in residents:
     output_string = 'Resident: {}, Preferences: {}'.format(resident.name, resident.preferences)
     print(output_string)
