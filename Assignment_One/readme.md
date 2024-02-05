@@ -9,7 +9,7 @@
 - Sergio Sanchez-Alvares
   - Student ID: 001123021
 - Zion Johnson
-  - Student ID: 
+  - Student ID: 000878533
 
 ## Program Structure
 ___All files must be located in the same directory___
