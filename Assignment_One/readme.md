@@ -1,4 +1,4 @@
-# Stable Matching Problem | Assignment 1
+# Assignment 1  |  Stable Matching Problem
 
 ## Class
 - CS4306: Algorithm Analysis
@@ -44,7 +44,7 @@ The csv should be structured similar to the example on the assignment instructio
 
 ## Output
 
-<u>*Output is printed to the terminal*.</u>
+<u>*Output is printed to the terminal and csv file*.</u>
 
 Each iteration gets an output as shown below:
     
@@ -54,3 +54,5 @@ Each iteration gets an output as shown below:
 At the end of the algorithm, the list is re-ordered to hospitals and residents together
 
     Hospital Name, Resident 1, ... , Resident n
+
+Official output is written to `output.csv`
