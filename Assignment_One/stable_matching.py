@@ -88,14 +88,14 @@ while hos_num < len(hospitals):
     elif any(x for x in matching if x[0].get_name() == hospitals[hos_num].get_name() and
                                     x[1] == current_preference_name):
         res_num = res_num + 1
-        print('{} and {} are already matched!'.format(current_preference_name, hospitals[hos_num].get_name()))
+        print('{} and {} are already matched! \n'.format(current_preference_name, hospitals[hos_num].get_name()))
     # Check if the current hospital has a smaller index than the hospital it is currently matched to
     elif (residents[current_preference_index].preferences.index(residents[current_preference_index].current_match) >
           residents[current_preference_index].preferences.index(hospitals[hos_num].name)):
         # Break them up. Remove matching  |  Remove resident's current match  |  add new current match  |  add new
         # match
         print(
-            "{} rejects {} and decides to go with {}".format(residents[current_preference_index].name,
+            "{} rejects {} and decides to go with {} \n".format(residents[current_preference_index].name,
                                                              residents[current_preference_index].current_match,
                                                              hospitals[hos_num].name))
         for i in range(len(matching) - 1, -1, -1):
@@ -123,10 +123,22 @@ while hos_num < len(hospitals):
                 cur_hospital = hospitals[hos_num]
             res_num = 0
     else:
-        print("{} is happy and rejects {}".format(current_preference_name, hospitals[hos_num].name))
+        print("{} is happy and rejects {} \n".format(current_preference_name, hospitals[hos_num].name))
         res_num += 1
 
 print("")
+
+print_matching = []
+
+for hospital in hospitals:
+    for i in range(len(matching) - 1, -1, -1):
+        if matching[i][0].name == hospital.name:
+            print_matching.insert(0,matching[i])
+
 for (hospital, resident) in matching:
+    print(hospital.name, resident)
+
+print("\nRe-ordered matching \n")
+for (hospital, resident) in print_matching:
     print(hospital.name, resident)
 # while len(residents) > 0:
