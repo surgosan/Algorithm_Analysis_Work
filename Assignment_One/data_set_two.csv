@@ -1,0 +1,10 @@
+Atlanta,2,Xavier,Abraham,Beth,Yolanda,Zeus, Cameron
+Boston,1,Cameron,Yolanda,Beth,Abraham,Xavier,Zeus
+Chicago,2,Abraham,Beth,Cameron,Zeus,Xavier,Yolanda
+
+Xavier,Boston,Atlanta,Chicago
+Yolanda,Atlanta,Boston,Chicago
+Zeus,Atlanta,Boston,Chicago
+Abraham,Chicago,Boston,Atlanta
+Beth,Boston, Atlanta,Chicago
+Cameron,Atlanta, Chicago, Boston
