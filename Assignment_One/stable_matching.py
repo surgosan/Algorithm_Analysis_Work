@@ -2,6 +2,14 @@ import csv
 import Hospital
 import Resident
 
+"""
+ Expected Stable Matching
+    Atlanta: Xavier -> Abraham -> Zeus
+    Atlanta: Yolanda
+    Boston: Abraham -> Xavier
+    Chicago: Abraham
+"""
+
 hospitals = []
 residents = []
 
@@ -47,43 +55,76 @@ print("")
 matching = []
 res_num = 0
 hos_num = 0
-while hos_num < len(hospitals) and len(hospitals[hos_num].preferences) > int(hospitals[hos_num].get_slots()):
-    cur_resident = hospitals[hos_num].preferences[res_num]
+while hos_num < len(hospitals):
+    current_preference_name = hospitals[hos_num].preferences[res_num]
+    current_preference_index = None
+    for resident in residents:
+        if resident.name == current_preference_name:
+            current_preference_index = residents.index(resident)
+            break
+    print(
+        "Checking if {} {} and {} {} match".format(hospitals[hos_num].name, hos_num, current_preference_name, res_num))
 
-    print("Checking if {} {} and {} {} match".format(hospitals[hos_num].name, hos_num, cur_resident, res_num))
-
-    if any(x for x in residents if x.name == cur_resident):
+    # If the preference is unmatched
+    if any(x for x in residents if x.name == current_preference_name and x.current_match is None):
         cur_hospital = hospitals[hos_num]
-
         print("Match Found")
-        print(cur_hospital.get_name(), cur_resident)
+        print(cur_hospital.get_name(), current_preference_name)
         print("")
-
-        # getting an error from this. getting boned rn frfr
-        # Remember that cur_resident is a string. Search residents with get_name to find a match
         for resident in residents:
-            if resident.get_name() == cur_resident:
-                residents.remove(resident)
+            if resident.get_name() == current_preference_name:
+                resident.current_match = cur_hospital.get_name()
+                # residents.remove(resident)
                 break
-        # The code now works past this until Chicago tries to take Xavier, but he is already taken
-        matching.append((cur_hospital, cur_resident))  # Append after the resident is removed incase it breaks
-        # Also feel free to open an issue if something happens again
-        hos_num += 1
-        res_num = 0
-    elif (any(x for x in residents if x.name == cur_resident) and residents[residents.index(cur_resident)].preferences.index(matching[0][0].get_name())
-          < residents[residents.index(cur_resident)].preferences.index(hospitals[hos_num])):
-        cur_hospital = hospitals[hos_num]
-        matching.append((cur_hospital, cur_resident))
-        residents.remove(cur_resident)
-        hos_num += 1
-        res_num = 0
+        matching.append((cur_hospital, current_preference_name))
+        cur_hospital.currently_matched.append(current_preference_name)
+        if len(hospitals[hos_num].currently_matched) >= int(hospitals[hos_num].get_slots()):
+            hos_num += 1
+            if not hos_num >= len(hospitals):
+                cur_hospital = hospitals[hos_num]
+            res_num = 0
 
-        for (hospital, resident) in matching:
-            print("Match Replaced")
-            print(hospital.name, resident.name)
+    # If the current hospital and resident is already matched
+    elif any(x for x in matching if x[0].get_name() == hospitals[hos_num].get_name() and
+                                    x[1] == current_preference_name):
+        res_num = res_num + 1
+        print('{} and {} are already matched!'.format(current_preference_name, hospitals[hos_num].get_name()))
+    # Check if the current hospital has a smaller index than the hospital it is currently matched to
+    elif (residents[current_preference_index].preferences.index(residents[current_preference_index].current_match) >
+          residents[current_preference_index].preferences.index(hospitals[hos_num].name)):
+        # Break them up. Remove matching  |  Remove resident's current match  |  add new current match  |  add new
+        # match
+        print(
+            "{} rejects {} and decides to go with {}".format(residents[current_preference_index].name,
+                                                             residents[current_preference_index].current_match,
+                                                             hospitals[hos_num].name))
+        for i in range(len(matching) - 1, -1, -1):
+            if (matching[i][0].get_name() == residents[current_preference_index].current_match and
+                    matching[i][1] == residents[current_preference_index].name):
+                del matching[i]
+                break
+        # Move rejected hospital to end of list
+        old_match_index = None
+        for h in range(len(hospitals) - 1, -1, -1):
+            if hospitals[h].name == residents[current_preference_index].current_match:
+                old_match_index = h
+        old_hospital = hospitals[old_match_index]
+        del hospitals[old_match_index]
+        hospitals.append(old_hospital)
+        hos_num = hos_num - 1
+        # Reformat the resident, hospital, and matching information
+        residents[current_preference_index].current_match = hospitals[hos_num].name
+        hospitals[hos_num].currently_matched.append(current_preference_name)
+        matching.append((hospitals[hos_num], residents[current_preference_index].name))
+        # Check whether to move on to next hospital
+        if len(hospitals[hos_num].currently_matched) >= int(hospitals[hos_num].get_slots()):
+            hos_num += 1
+            if not hos_num >= len(hospitals):
+                cur_hospital = hospitals[hos_num]
+            res_num = 0
     else:
+        print("{} is happy and rejects {}".format(current_preference_name, hospitals[hos_num].name))
         res_num += 1
-
 
 print("")
 for (hospital, resident) in matching:
