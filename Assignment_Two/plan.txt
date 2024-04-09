@@ -1,0 +1,13 @@
+Given: Array of triplets with height, left bound and right bound.
+    These triplets create buildings.
+
+Goal: Eliminate overlap and only draw the outer border of the skyline.
+
+Based on the assignment instructions example, we can assume that the building tuples are ordered in ascending order based on x positons for the left bound.
+
+Important things to consider:
+    1. If a building overlaps with the next one, then we should record the right bound. If the next building ends up inside the 1st building, then return to the original height.
+    2. If there is no building (empty space) after the right bound and before the left bound of the next building, drop height to 0.
+    3. If a building overlaps over more than 1 other structure, then we should record the right bounds in an array in ascending order of distance. This is to return to the height of the respective building.
+            Perhaps store previous height and right bound in the array to easily get the values. Store based on right bound value.
+    4. If the bulding is the last index, then drop the height to 0 at the end. Also start at 0 for the beginning.
