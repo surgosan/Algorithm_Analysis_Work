@@ -129,6 +129,7 @@ while hos_num < len(hospitals):
                                                              hospitals[hos_num].name.capitalize()))
         res_num += 1
 
+
 print("")
 
 print_matching = []
