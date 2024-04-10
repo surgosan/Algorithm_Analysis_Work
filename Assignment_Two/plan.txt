@@ -11,3 +11,11 @@ Important things to consider:
     3. If a building overlaps over more than 1 other structure, then we should record the right bounds in an array in ascending order of distance. This is to return to the height of the respective building.
             Perhaps store previous height and right bound in the array to easily get the values. Store based on right bound value.
     4. If the bulding is the last index, then drop the height to 0 at the end. Also start at 0 for the beginning.
+
+
+Manual Solving
+
+Input Buildings B = [(6, 1, 6) , (8, 3, 5) , (4, 4, 9) , (2, 7, 12) , (7, 11, 14)]
+[6,1]   [6,6]
+[8,3]   [8,5] This building ended before the previous one did
+[6,5]

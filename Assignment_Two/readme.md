@@ -13,14 +13,29 @@
 ## Program Structure
 ___All files must be located in the same directory___
 
-    Define Program Functions here
+### CSV Reader
+Reads the csv file. Will record each row as a building tuple and append it
+to the buildings array
+
+### Skyline Shaper
+This function takes in the buildings array as a parameter
+
+It looks through each building and takes the height, left, and right bound
+
+It sorts the buildings based on the right bound position
+
+On each iteration, it will check if any buildings should have ended and remove them
+
+It keeps track of the max height. Should it change on each iteration, it will adjust
+
+returns the skyline array
 
 ## Input
 Accepts a csv file as defined in the assignment instructions.
  
 Define the csv file on `line 9` as follows: 
 
-    './<File Name>.csv'
+    './<File Name>.csv' 
 
 The csv should be structured similar to the example on the assignment instructions
 
@@ -28,7 +43,7 @@ The csv should be structured similar to the example on the assignment instructio
     |
     Repeat
 
-The program assumes that the data points are ordered in ascending order by `Left Bound Position`.
+The program assumes that the data points are ordered in ascending order.
 The same way that the assigment example is ordered.
 
 ## Output
