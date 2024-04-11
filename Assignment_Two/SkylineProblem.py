@@ -1,4 +1,5 @@
 import csv
+import sys
 
 
 # Custom sorting function to sort buildings by their right x-coordinate
@@ -36,16 +37,52 @@ def get_outer_shape(buildingInput):
     return shapedSkyline
 
 
-# Read buildings from CSV
-buildings = []
-with open('input.csv', newline='') as csvfile:
-    reader = csv.reader(csvfile)
-    for row in reader:
-        building = tuple(map(int, row))
-        buildings.append(building)  # Record each building as a tuple
+# Create the file reader to read skyline array. input from [filename].csv
+def get_input(fileName):
+    buildingArray = []
+    with open(f'InputsOutputs/{fileName}.csv', newline='') as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            building = tuple(map(int, row))
+            buildingArray.append(building)  # Record each building as a tuple
 
+    return buildingArray
+
+
+# Create the file writer to output skyline array. Output to [filename].csv
+def set_output(fileName):
+    with open(f"InputsOutputs/{fileName}.csv", "w", newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        for row in skyline:
+            writer.writerow(row)
+
+
+buildings = get_input("input1")
 # Call function to find skyline shape
 skyline = get_outer_shape(buildings)
 print(skyline)
+set_output("output1")
 
-# Create the file writer to output skyline array. Output to output.csv
+buildings = get_input("input2")
+# Call function to find skyline shape
+skyline = get_outer_shape(buildings)
+print(skyline)
+set_output("output2")
+
+buildings = get_input("input3")
+# Call function to find skyline shape
+skyline = get_outer_shape(buildings)
+print(skyline)
+set_output("output3")
+
+buildings = get_input("input4")
+# Call function to find skyline shape
+skyline = get_outer_shape(buildings)
+print(skyline)
+set_output("output4")
+
+buildings = get_input("input5")
+# Call function to find skyline shape
+skyline = get_outer_shape(buildings)
+print(skyline)
+set_output("output5")
