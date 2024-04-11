@@ -1,5 +1,4 @@
 import csv
-import sys
 
 
 # Custom sorting function to sort buildings by their right x-coordinate

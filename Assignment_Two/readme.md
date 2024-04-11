@@ -32,6 +32,8 @@ returns the skyline array
 
 ## Input
 Accepts a csv file as defined in the assignment instructions.
+
+Input comes from input files in the `InputsOuputs` directory
  
 Define the csv file on `line 9` as follows: 
 
@@ -48,10 +50,10 @@ The same way that the assigment example is ordered.
 
 ## Output
 
-<u>*Output is printed to the terminal and csv file*.</u>
+<u>*Output is printed to the terminal and csv files*.</u>
 
     Height, X position
     |
     Repeat
 
-Official output is written to `output.csv`
+Output is written to csv files in the `InputOutput` directory
